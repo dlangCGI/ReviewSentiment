@@ -5,13 +5,14 @@ from review_classification.predict import make_prediction, TEXTCOLUMN
 
 class Test(unittest.TestCase):
     """
-    Basic unittest class to instantiate testcases
+    Basic unittest class to instantiate testcases.
+    Here used for easy tests for the classifier.
     """
     def test_0_basic_positive(self):
         """
         Test basic positive comments classification
         """
-        testinput = {TEXTCOLUMN : ['This product was great!']}
+        testinput = {TEXTCOLUMN: ['This product was great!']}
         y_pred = make_prediction(json.dumps(testinput))['predictions'][0]
         self.assertEqual(y_pred, 1)
 
@@ -19,7 +20,7 @@ class Test(unittest.TestCase):
         """
         Test multiple basic positive comments classification
         """
-        testinput = {TEXTCOLUMN : ['Good', 'I liked the phone.',
+        testinput = {TEXTCOLUMN: ['Good', 'I liked the phone.',
                                    'My son was happy. The price was good.']}
         y_pred = make_prediction(json.dumps(testinput))['predictions']
         self.assertListEqual(y_pred.tolist(), [1, 1, 1])
