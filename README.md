@@ -20,5 +20,7 @@ pip install -r requirements.txt
 
 Using conda also works for most packages, but the *symspellpy* dependency needs pip install.
 
+(more guides following)
+
 
 
