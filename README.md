@@ -10,7 +10,7 @@ For the pretrained Model here a domain-specific dataset was used (Amazon Phone R
 but the model can be fine-tuned or retrained on another dataset. The steps and evaluation 
 for that are provided in the Jupyter Notebook.
 
-## Setup and Quickstart
+## Setup
 
 All requirements are in *requirements.txt* file, so just perform: 
 
@@ -20,7 +20,9 @@ pip install -r requirements.txt
 
 Using conda also works for most packages, but the *symspellpy* dependency needs pip install.
 
-(more guides following)
+- Run the *app.py* file inside the *api* package to test the model through a simple RESTApi.
+
+- Inside the *tests* package are two test script to test the model with unittests.
 
 
 
