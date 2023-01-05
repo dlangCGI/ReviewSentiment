@@ -4,3 +4,4 @@ symspellpy
 nltk
 tensorflow>=2.0
 keras
+flask

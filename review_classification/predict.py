@@ -25,9 +25,10 @@ tokenizer = tokenizer_from_json(tokenizer_json)
 lstm_model = load_model(model_path)
 
 
-def make_prediction(input_data):
+def make_prediction_json(input_data):
     """Making a prediction using the preprocessing functions,
-    the saved tokenizer and the saved model."""
+    the saved tokenizer and the saved model.
+    input_data is a json-string."""
 
     # convert data to pandas data frame
     data = pd.read_json(input_data)[TEXTCOLUMN]
@@ -44,3 +45,19 @@ def make_prediction(input_data):
     response = {'predictions': predictions}
 
     return response
+
+
+def make_prediction_raw(input_data):
+    """Making a prediction using the preprocessing functions,
+        the saved tokenizer and the saved model.
+        input_data is an array with strings for different reviews."""
+
+    # preprocess data
+    cleaned_data = [clean_text(x) for x in input_data]
+    model_input = get_sequences(tokenizer, cleaned_data)
+
+    # make predictions
+    predictions = lstm_model.predict(model_input)
+    predictions = np.argmax(predictions, axis=1)
+
+    return predictions

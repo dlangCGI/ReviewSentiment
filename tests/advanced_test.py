@@ -1,6 +1,6 @@
 import unittest
 import json
-from review_classification.predict import make_prediction, TEXTCOLUMN
+from review_classification.predict import make_prediction_json, TEXTCOLUMN
 
 
 class Test(unittest.TestCase):
@@ -15,7 +15,7 @@ class Test(unittest.TestCase):
         testinput = {TEXTCOLUMN: ['The service was not bad. Insane phone!',
                                   'Although terrible costumer servie, i '
                                   'received a great product!']}
-        y_pred = make_prediction(json.dumps(testinput))['predictions']
+        y_pred = make_prediction_json(json.dumps(testinput))['predictions']
         self.assertEqual(y_pred.tolist(), [1, 1])
 
     def test_1_advanced_negative(self):
@@ -26,7 +26,7 @@ class Test(unittest.TestCase):
                                   'product with more good reviews.',
                                   'The price was good, but the quality '
                                   'really is not. No recommendation!']}
-        y_pred = make_prediction(json.dumps(testinput))['predictions']
+        y_pred = make_prediction_json(json.dumps(testinput))['predictions']
         self.assertListEqual(y_pred.tolist(), [0, 0])
 
     def test_2_not_clean_input(self):
@@ -39,7 +39,7 @@ class Test(unittest.TestCase):
                                                      'Overall only 2 stars so '
                                                      'no recommendatin.',
                                   'woooow, greeat!']}
-        y_pred = make_prediction(json.dumps(testinput))['predictions']
+        y_pred = make_prediction_json(json.dumps(testinput))['predictions']
         self.assertEqual(y_pred.tolist(), [0, 0, 1])
 
 
