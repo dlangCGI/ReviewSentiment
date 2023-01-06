@@ -6,7 +6,7 @@ import numpy as np
 
 from keras.models import load_model
 from keras.preprocessing.text import tokenizer_from_json
-from .preprocessors import clean_text, get_sequences
+from review_classification.preprocessors import clean_text, get_sequences
 
 # name for user text input
 TEXTCOLUMN = 'review'

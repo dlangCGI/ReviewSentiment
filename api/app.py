@@ -21,8 +21,8 @@ def predict():
         # catch any error during prediction
         try:
             predictions = make_prediction_raw([review_text])
-        except Exception:
-            return render_template('index.html', error="Something went wrong.")
+        except Exception as e:
+            return render_template('index.html', error=e)
 
         prediction = 'positive' if predictions[0] == 1 else 'negative'
         # finally render template with correct sentiment
@@ -34,4 +34,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
